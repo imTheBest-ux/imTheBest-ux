@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 50px;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #d9534f;
+            margin: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .new-heart {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .new-heart::before,
+        .new-heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .new-heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .new-heart::after {
+            top: 0;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="heart-container">
+        <div id="heart" class="heart" onclick="replaceHeart()"></div>
+        <div id="message" class="message">I love you, bab</div>
+    </div>
+
+    <script>
+        function replaceHeart() {
+            // Hide the original heart and message
+            const heart = document.getElementById('heart');
+            const message = document.getElementById('message');
+            heart.style.opacity = '0';
+            message.style.opacity = '0';
+
+            // Create new heart element
+            const newHeart = document.createElement('div');
+            newHeart.classList.add('new-heart');
+            newHeart.onclick = function() {
+                alert('iyot ta ha hehehehhe');
+            };
+
+            // Add new heart to the container
+            const heartContainer = document.getElementById('heart-container');
+            heartContainer.appendChild(newHeart);
+
+            // Optionally remove the old heart and message after transition
+            setTimeout(() => {
+                heart.remove();
+                message.remove();
+            }, 500); // Matches the CSS transition duration
+        }
+    </script>
+</body>
+</html>
+  
