@@ -23,7 +23,9 @@
             height: 100px;
             background-color: red;
             transform: rotate(-45deg);
+            cursor: pointer;
             margin-bottom: 20px;
+            transition: opacity 0.5s ease;
         }
 
         .heart::before,
@@ -46,21 +48,75 @@
             left: 50px;
         }
 
-        h1 {
+        .message {
             font-size: 24px;
-            color: #ff4d4d;
+            color: #d9534f;
             margin: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .new-heart {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .new-heart::before,
+        .new-heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .new-heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .new-heart::after {
+            top: 0;
+            left: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="heart"></div>
-    <h1>ILOVEYOUUUUUUUUUUUU BABABBBBBB</h1>
+    <div id="heart-container">
+        <div id="heart" class="heart" onclick="replaceHeart()"></div>
+        <div id="message" class="message">hi, pindutin mo yung heartttt daliiii</div>
+    </div>
 
     <script>
-        // You can add JavaScript functionality here if needed.
-        // For now, it's just static content.
-        console.log("Website loaded successfully!");
+        function replaceHeart() {
+            // Hide the original heart and message
+            const heart = document.getElementById('heart');
+            const message = document.getElementById('message');
+            heart.style.opacity = '0';
+            message.style.opacity = '0';
+
+            // Create new heart element
+            const newHeart = document.createElement('div');
+            newHeart.classList.add('new-heart');
+            newHeart.onclick = function() {
+                alert('iyot ta ha hehehehhe');
+            };
+
+            // Add new heart to the container
+            const heartContainer = document.getElementById('heart-container');
+            heartContainer.appendChild(newHeart);
+
+            // Optionally remove the old heart and message after transition
+            setTimeout(() => {
+                heart.remove();
+                message.remove();
+            }, 500); // Matches the CSS transition duration
+        }
     </script>
 </body>
 </html>
